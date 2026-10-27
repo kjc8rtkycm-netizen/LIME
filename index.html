@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>ЛАЙМ — пульт</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Golos+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#c4ee2b;--ink:#2a0840;--pink:#ff3d8b;--card:#f3ffb8;--line:#2a0840;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b0828;--ink:#ecffa0;--pink:#ff6fae;--card:#2b1240;--line:#c4ee2b;color-scheme:dark}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 'Golos Text',system-ui,sans-serif;padding-bottom:calc(120px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
+.hero{position:relative;padding:34px 20px 26px;min-height:300px;overflow:hidden}
+.hero h1{font:900 clamp(76px,27vw,150px)/.82 Unbounded,sans-serif;margin:0;letter-spacing:-.05em;position:relative;z-index:1}
+.hero p{max-width:20ch;margin:16px 0 0;font-weight:600;position:relative;z-index:1}
+#wheel{position:absolute;right:-70px;top:14px;width:260px;height:260px;transition:transform .08s}
+.spin{transform-origin:50% 50%}#wheel.on .spin{animation:sp 7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.tl{position:relative;margin:0 14px;padding-left:34px}
+.tl:before{content:"";position:absolute;left:11px;top:10px;bottom:10px;width:4px;border-radius:2px;background:var(--line);opacity:.25}
+.sc{position:relative;background:var(--card);border-radius:28px;margin:0 0 14px;box-shadow:0 0 0 3px var(--line)}
+.sc:before{content:attr(data-n);position:absolute;left:-34px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 12px/26px Unbounded,sans-serif;text-align:center}
+.sc.cur{box-shadow:0 0 0 3px var(--pink),0 10px 0 -2px var(--pink)}.sc.cur:before{background:var(--pink);color:#fff}
+.hd{all:unset;display:flex;width:100%;padding:16px 18px;gap:12px;align-items:center;cursor:pointer;font:700 16px/1.2 Unbounded,sans-serif}
+.hd:focus-visible{outline:3px solid var(--pink);outline-offset:-3px;border-radius:28px}
+.hd span{flex:1}.hd i{font:900 26px/1 Unbounded;transition:transform .25s}.sc.open .hd i{transform:rotate(45deg)}
+.bd{display:none;padding:0 18px 18px}.sc.open .bd{display:block}
+.dir{font-style:italic;opacity:.75;margin:10px 0}
+.ln{margin:10px 0;display:flex;gap:10px;align-items:baseline}
+.who{flex:none;min-width:64px;text-align:center;padding:2px 10px;border-radius:99px;color:#fff;font:700 12px/1.6 Unbounded,sans-serif}
+.tx{flex:1}.v{white-space:pre-line;margin-top:4px}
+.song{margin:14px 0;padding:14px 16px;border-radius:20px;background:var(--ink);color:var(--bg);font-weight:600;white-space:pre-line}
+.song small{display:block;font:700 12px Unbounded;color:var(--pink);margin-bottom:6px}
+.cues{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.cue{border:0;border-radius:20px;background:var(--pink);color:#fff;font:700 14px/1.25 Unbounded,sans-serif;padding:16px 14px;min-height:64px;cursor:pointer;text-align:left;box-shadow:0 5px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.cue:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}.cue.pl{background:var(--ink);color:var(--bg);box-shadow:0 5px 0 var(--pink)}
+.cue:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+#bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);border-radius:99px;padding:10px 12px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#pp{border:0;border-radius:50%;width:48px;height:48px;background:var(--pink);color:#fff;font-size:18px;cursor:pointer;flex:none}
+#in{flex:1;min-width:0}#nm{font:700 13px Unbounded,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pg{height:5px;border-radius:3px;background:rgba(255,255,255,.2);margin-top:7px;overflow:hidden}#pf{height:100%;width:0;background:var(--bg)}
+#eq{display:flex;gap:3px;align-items:flex-end;height:28px;margin-right:6px}#eq b{width:5px;height:4px;border-radius:2px;background:var(--bg);transition:height .08s}
+@media (prefers-reduced-motion:reduce){#wheel.on .spin{animation:none}}
+.hero{padding-top:70px}
+.by{font:italic 600 16px/1 "Snell Roundhand","Apple Chancery","Segoe Script",serif;letter-spacing:.02em}
+#top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--bg);padding:8px 18px;border-radius:99px;box-shadow:0 0 0 2px var(--pink)}
+footer{text-align:center;padding:30px 10px 10px}footer .by{font-size:22px;display:inline-block;background:var(--ink);color:var(--bg);padding:12px 26px;border-radius:99px;box-shadow:0 0 0 3px var(--pink)}
+#go{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px;transition:opacity .7s,transform .9s cubic-bezier(.7,0,.2,1)}
+#go.out{opacity:0;transform:scale(2.6);pointer-events:none}
+#gw{width:min(60vw,240px)}#gw .spin{animation:sp 3s linear infinite}
+#go h2{font:900 clamp(34px,11vw,64px)/.95 Unbounded;margin:0;letter-spacing:-.03em}
+#go button{border:0;border-radius:99px;background:var(--pink);color:#fff;font:700 16px Unbounded;padding:18px 26px;box-shadow:0 6px 0 var(--ink);cursor:pointer;animation:pu 1.2s ease-in-out infinite}
+@keyframes pu{50%{transform:scale(1.06)}}
+#show{position:fixed;inset:0;z-index:55;background:radial-gradient(circle at 50% 45%,#4b1470,#12041d);color:#d6f36a;display:none;flex-direction:column;align-items:center;justify-content:flex-end;padding:20px 20px calc(100px + env(safe-area-inset-bottom,0px));text-align:center}
+#show.on{display:flex}#st{font:900 clamp(30px,9vw,60px)/1 Unbounded;text-shadow:0 0 24px #c4ee2b;position:relative;z-index:61}
+#show small{opacity:.7;margin-top:10px;position:relative;z-index:61}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none}
+#sh{border:0;border-radius:50%;width:48px;height:48px;background:#c4ee2b;color:var(--ink);font-size:20px;cursor:pointer;flex:none}
+#show.on~#top{z-index:70}
+</style></head><body>
+<div id="top" class="by">by 𝓝𝓮𝔁𝓲𝓴</div>
+<div id="go"><svg id="gw" viewBox="0 0 100 100"></svg><h2>ЛАЙМ<br>в здании</h2><button id="start">ЗАРЯЖАЕМ ВИТАМИНАМИ ▶</button><span class="by">by 𝓝𝓮𝔁𝓲𝓴</span></div>
+<div class="hero"><svg id="wheel" viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="50" r="48" fill="#4f9d00"/><circle cx="50" cy="50" r="43" fill="#f0ffa0"/><g fill="#9bd61a"><path d="M50 50L50 9A41 41 0 0 1 79 21Z"/><path d="M50 50L85 36A41 41 0 0 1 85 64Z"/><path d="M50 50L79 79A41 41 0 0 1 50 91Z"/><path d="M50 50L21 79A41 41 0 0 1 9 64Z"/><path d="M50 50L15 36A41 41 0 0 1 21 21Z"/></g><circle cx="50" cy="50" r="4" fill="#f0ffa0"/></g></svg>
+<h1>ЛАЙМ</h1><p>Пульт выступления. Открой сцену, жми отбивку.</p></div>
+<main class="tl" id="m"></main>
+<footer><span class="by">by 𝓝𝓮𝔁𝓲𝓴</span></footer>
+<div id="show"><div id="st">ЛАЙМ</div><small>тапни, чтобы вернуться · by 𝓝𝓮𝔁𝓲𝓴</small></div>
+<canvas id="fx"></canvas>
+<div id="bar"><div id="eq"><b></b><b></b><b></b><b></b></div><button id="pp" aria-label="Пауза">▶</button><div id="in"><div id="nm">Выбери отбивку</div><div id="pg"><div id="pf"></div></div></div><button id="sh" aria-label="Шоу">✨</button></div>
+<script>
+const A={start:'audio/start.mp3',dj:'audio/dj.mp3',mognu:'audio/mognu.mp3',combat:'audio/combat.mp3',bat:'audio/bat.mp3',end:'audio/end.mp3'};
+const C={'Артем':'#e0246f','Платон':'#5b35d5','Ефим':'#e07400','Арина':'#00927c','Галя':'#b8329e','Поля':'#2a76d2','Алина':'#c2410c','Все':'#2a0840','Ведущий':'#555'};
+const S=[
+{t:'Визитка',c:[['start','Песня'],['dj','Отбивка · Кислотный DJ']],l:['Артем|«Так, где витамин А?»','Платон|«Вон, у него срывный нерв!»','Ефим|(кричит) «Аааааааааааааа!»','Артем|«А где витамин В?»','Платон|«Да спит со вчерашнего вечера, валерьянки напился!»','Артем|«А где витамин С?»','Галя|(в кимоно выпрыгивает и кричит) «Я здесь!»','Все|«А что, у нас все зрители из Кислолаймовска что ли? Заряжаем ВИТАМИНАМИ!!!!»','#Песня|Ну что народ, мы снова здесь, по нам Вы точно скучали,\nЛаймЫ Здесь, Зажигаем, Руки вверх Все поднимаем,\nВыше, выше, Всех встречаем, скуку разгоняем,\nЛаймЫ Здесь, это наш шанс, в позитив Вас забираем!']},
+{t:'Миниатюра 1 · Новенький в команде КВН',c:[['mognu','Отбивка · Я тебя МОГНУ']],l:['~Ефим, Артем, Арина, Платон','Ведущий|«Новенький в команде КВН»','Ефим|(машет руками и ОЧЕНЬ позитивно кричит) «Всем привееееет!!!!!!!!!!»','Арина|«My Boy, у тебя ВСЕ НОРМ?»','Ефим|«Да! Я просто ОЧЕНЬ веселенький!»','Артем|«А ты шутить-то умеешь вообще?»','Ефим|«Я тебя МОГНУ»','Платон|«Над этой шуткой уже чайник даже не смеется!»','Ефим|«Ну что мне тогда делать?»','Платон|(грудь вперед) «Будешь как я! Стулья в команде носить……»']},
+{t:'Миниатюра 2 · Контакты зумеров',c:[['combat','Отбивка · Комбат Батяня']],l:['Ведущий|«Как подписаны контакты ШНУРКОВ у современных ЗУМЕРОВ»','Ефим|\nМАМулесса\nМАМзулина\nМАМкинштерн\nМАМаситта\nМАМкан\nМать, но не ТЕРЕЗА\nТралалела-Тралала\nMама I’m Kriminal','Арина|\nГосМАМконтроль\nБатюшка\nИВАН ГРОЗНЫЙ\nНе СВЯТОЙ, но Отец\nПапкинштерн\nБатязавр\nСбербосс\nПапуфик\nТарас Бульба\nКомбат Батяня']},
+{t:'Миниатюра 3 · ТикТок',c:[['bat','Отбивка · У батареи']],l:['Ведущий|«Когда ЗУМЕРОК зашел ненадолго в ТикТок»','~Ефим стоит и залипает в ТикТоке. В это время Арина и Поля ссорятся, кто какие штаны и футболку надел.','Ефим|«Девочки, не ссорьтесь, пошли в кино!»','Поля|«ЭЙ, ваще-то ТЫ МОЙ ПАРЕНЬ!»','Ефим|«Ой, сорян, перепутал!»']},
+{t:'Миниатюра 4 · Рэп-баттл',c:[],l:['Ведущий|«Смотрите во всех кинотеатрах Москвы!»','Арина|\nТы персонаж старой скучной сказки,\nКатился по лесу без каски\nКусок теста из сусеков,\nЛучше б бабка напекла чебуреков\nГолова, чтобы чушь по лесу нести\nТебя не съели, чтобы желудки спасти\nУ лисы 3-й день несваренье\nПроглотила круглое недоразумение\nПро тебя сняли фильм, вот те нате,\nЖаль, что он провалился в прокате\nТы не персонаж комедии, а персонаж кошмаров\nПотому что тебя озвучивал Харламов\nГоворят, что круг — это идеальная форма,\nНо для фигуры это явно не норма\nУ тебя нет ни рук, ни ног,\nОчень плохо ведешь диалог!\nРАУНД!','Артем|\nСтоило ли травиться токсином,\nЧтоб по улице прыгать в лосинах,\nТы думаешь что во всем ты лидер,\nНо на самом деле ты всего лишь Паркер Питер\nТы расставил свои паучьи сети,\nНо посмотреть тебя можно только в интернете\nТы не герой, ты просто МЕМ в этом куплете\nЭто знают взрослые и дети\nТы не герой без своей маски,\nА я хотя бы персонаж известной сказки\nТы популярен? Не смеши меня, детка!\nМеня узнает любая трехлетка\nРАУНД!']},
+{t:'Финал',c:[['end','Конечная песня']],l:['Алина|«Команда ЛАЙМ! Лучшие из худших!»','#Песня|Еще чуть-чуть и прямо в ЛАЙМ, и жизнь удалась\nWhat a beautiful LAIM!!!!!!!!!!!!!!']}];
+const au=new Audio(),m=document.getElementById('m'),nm=document.getElementById('nm'),pf=document.getElementById('pf'),pp=document.getElementById('pp'),wh=document.getElementById('wheel'),bs=document.querySelectorAll('#eq b');
+let ac,an,buf,cur=null;
+S.forEach((s,i)=>{const d=document.createElement('section');d.className='sc'+(i?'':' open');d.dataset.n=i+1;
+let h='<button class="hd"><span>'+s.t+'</span><i>+</i></button><div class="bd">';
+s.l.forEach(x=>{if(x[0]=='~'){h+='<div class="dir">'+x.slice(1)+'</div>';return}const k=x.indexOf('|'),w=x.slice(0,k),t=x.slice(k+1);
+if(w[0]=='#'){h+='<div class="song"><small>'+w.slice(1)+'</small>'+t+'</div>';return}
+h+='<div class="ln"><span class="who" style="background:'+(C[w]||'#555')+'">'+w+'</span><div class="tx">'+(t[0]=='\n'?'<div class="v">'+t.trim()+'</div>':t)+'</div></div>'});
+h+='<div class="cues">'+s.c.map(c=>'<button class="cue" data-k="'+c[0]+'" data-n="'+c[1]+'">▶ '+c[1]+'</button>').join('')+'</div></div>';
+d.innerHTML=h;d.querySelector('.hd').onclick=()=>d.classList.toggle('open');m.appendChild(d)});
+m.addEventListener('click',e=>{const b=e.target.closest('.cue');if(!b)return;
+if(cur===b.dataset.k&&!au.paused){au.pause();return}
+if(cur!==b.dataset.k){cur=b.dataset.k;au.src=A[cur]}nm.textContent=b.dataset.n;
+try{if(!ac&&/^http/.test(location.protocol)){ac=new (window.AudioContext||window.webkitAudioContext)();an=ac.createAnalyser();an.fftSize=32;ac.createMediaElementSource(au).connect(an);an.connect(ac.destination);buf=new Uint8Array(an.frequencyBinCount)}ac.resume()}catch(_){}
+au.play();mark();burst(e.clientX,e.clientY);document.getElementById('st').textContent=b.dataset.n});
+function mark(){document.querySelectorAll('.cue').forEach(c=>c.classList.toggle('pl',c.dataset.k===cur&&!au.paused));document.querySelectorAll('.sc').forEach(s=>s.classList.toggle('cur',!!s.querySelector('.cue.pl')));pp.textContent=au.paused?'▶':'⏸';wh.classList.toggle('on',!au.paused)}
+pp.onclick=()=>{if(!au.src)return;au.paused?au.play():au.pause()};
+['play','pause','ended'].forEach(v=>au.addEventListener(v,mark));
+au.addEventListener('timeupdate',()=>{pf.style.width=(au.currentTime/(au.duration||1)*100)+'%'});
+
+const fx=document.getElementById('fx'),x=fx.getContext('2d'),sw=document.getElementById('show'),go=document.getElementById('go');
+document.getElementById('gw').innerHTML=wh.innerHTML;
+function rs(){fx.width=innerWidth;fx.height=innerHeight}rs();addEventListener('resize',rs);
+document.getElementById('start').onclick=()=>{go.classList.add('out');setTimeout(()=>go.remove(),1000)};
+document.getElementById('sh').onclick=()=>sw.classList.toggle('on');sw.onclick=()=>sw.classList.remove('on');
+const P=[],K=['#c4ee2b','#ff3d8b','#f0ffa0','#7ac70c'];
+function burst(px,py){for(let i=0;i<46;i++){const a=Math.random()*6.28,v=3+Math.random()*9;P.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,r:5+Math.random()*9,a:Math.random()*6,w:(Math.random()-.5)*.4,l:1,c:K[i%4]})}}
+function lv(j){if(au.paused)return 0;if(an){return buf[j]/255}return .45+.45*Math.sin(performance.now()/180+j*.9)}
+(function loop(t){x.clearRect(0,0,fx.width,fx.height);
+if(an&&!au.paused)an.getByteFrequencyData(buf);
+let s=0;for(let i=1;i<7;i++)s+=lv(i);wh.style.transform=s?'scale('+(1+s/6*.3)+')':'';
+bs.forEach((b,j)=>b.style.height=(4+lv(j+1)*24)+'px');
+if(sw.classList.contains('on')){const cx=fx.width/2,cy=fx.height*.42,m=Math.min(fx.width,fx.height),N=36;x.lineCap='round';x.lineWidth=m*.016;
+for(let i=0;i<N;i++){const a=i/N*6.283+t/4000,l=lv(1+i%14),r1=m*.2,r2=r1+m*.05+l*m*.26;x.strokeStyle=i%3?'#c4ee2b':'#ff3d8b';x.beginPath();x.moveTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1);x.lineTo(cx+Math.cos(a)*r2,cy+Math.sin(a)*r2);x.stroke()}
+x.fillStyle='#c4ee2b';x.beginPath();x.arc(cx,cy,m*.17+lv(2)*m*.03,0,6.283);x.fill();x.fillStyle='#f0ffa0';x.beginPath();x.arc(cx,cy,m*.13,0,6.283);x.fill();
+x.strokeStyle='#7ac70c';x.lineWidth=m*.008;for(let i=0;i<5;i++){const a=i*1.2566+t/900;x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+Math.cos(a)*m*.13,cy+Math.sin(a)*m*.13);x.stroke()}}
+for(let i=P.length-1;i>=0;i--){const p=P[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.a+=p.w;p.l-=.014;if(p.l<=0){P.splice(i,1);continue}x.globalAlpha=p.l;x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,p.a,p.a+2.4);x.closePath();x.fill()}x.globalAlpha=1;
+requestAnimationFrame(loop)})(0);
+</script></body></html>
